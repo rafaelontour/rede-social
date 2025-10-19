@@ -1,0 +1,98 @@
+scalar DateTime
+
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    password: String!
+    displayName: String
+    bio: String
+    avatarUrl: String
+    createdAt: DateTime
+}
+
+type UserDTOOutput {
+    id: ID!
+    username: String!
+    displayName: String!
+    bio: String
+    avatarUrl: String
+    email: String!
+    createdAt: DateTime
+}
+
+type Post {
+    id: ID!
+    author: User!
+    content: String!
+    mediaUrls: [String!]
+    createdAt: DateTime
+    likesCount: Int
+    commentsCount: Int
+    commentsPage(offset: Int, limit: Int): [Comment!]
+    comments: [String!]
+}
+
+type PostDTOOutput {
+    id: String!
+    authorId: String!
+    content: String!
+    mediaUrls: [String!]
+    likesCount: Int!
+    commentsCount: Int!
+    createdAt: DateTime
+}
+
+type Comment {
+    id: ID!
+    author: User!
+    content: String!
+    createdAt: DateTime
+}
+
+type CommentDTOOutput {
+    id: String!
+    authorId: String!
+    content: String!
+    createdAt: DateTime
+}
+
+
+input CreateUserInput {
+    username: String!
+    email: String!
+    password: String!
+    displayName: String!
+}
+
+
+
+input CreatePostInput {
+    authorId: ID!
+    content: String!
+    mediaUrls: [String!]
+}
+
+
+
+input CreateCommentInput {
+    postId: ID!
+    authorId: ID!
+    content: String!
+}
+
+
+type Query {
+    getUserById(id: ID!): UserDTOOutput
+    getUserByUsername(username: String!): UserDTOOutput
+    getPostById(id: ID!): PostDTOOutput
+    timeline(userId: ID!, limit: Int = 20, offset: Int = 0): [PostDTOOutput!]
+}
+
+
+type Mutation {
+    createUser(input: CreateUserInput!): UserDTOOutput!
+    createPost(input: CreatePostInput!): PostDTOOutput!
+    createComment(input: CreateCommentInput!): CommentDTOOutput!
+    likePost(postId: ID!, userId: ID!): Boolean!
+}
