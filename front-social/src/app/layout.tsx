@@ -17,13 +17,15 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`flex h-screen`}
+        className={`flex h-screen bg-gray-300`}
       >
         <BarraLateral />
-        <div className="flex bg-violet-500 h-16 w-full items-center">
-          <BarraDePesquisa />
+        <div className="flex flex-col w-full">
+          <div className="flex bg-violet-500 h-16 w-full items-center">
+            <BarraDePesquisa />
+          </div>
+          <div className="flex justify-center h-screen">{children}</div>
         </div>
-        {children}
       </body>
     </html>
   );
