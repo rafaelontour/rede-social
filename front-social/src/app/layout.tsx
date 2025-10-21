@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BarraLateral from "@/components/BarraLateral";
+import BarraDePesquisa from "@/components/BarraDePesquisa";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,9 +19,9 @@ export default function RootLayout({
       <body
         className={`flex h-screen`}
       >
-        <BarraLateral/>
-        <div className="flex bg-purple-900 h-16 w-full ">
-          teste
+        <BarraLateral />
+        <div className="flex bg-violet-500 h-16 w-full items-center">
+          <BarraDePesquisa />
         </div>
         {children}
       </body>
