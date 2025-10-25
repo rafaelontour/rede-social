@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BarraLateral from "@/components/BarraLateral";
 import BarraDePesquisa from "@/components/BarraDePesquisa";
+import { ContextoUsuarioProvider } from "@/data/context/ContextoUsuario";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +25,12 @@ export default function RootLayout({
           <div className="flex bg-violet-500 h-16 w-full items-center">
             <BarraDePesquisa />
           </div>
-          <div className="flex justify-center h-screen">{children}</div>
+
+          <div className="flex justify-center h-screen">
+            <ContextoUsuarioProvider>
+              {children}
+            </ContextoUsuarioProvider>
+          </div>
         </div>
       </body>
     </html>

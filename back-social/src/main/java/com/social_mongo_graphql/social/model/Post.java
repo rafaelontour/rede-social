@@ -1,6 +1,5 @@
 package com.social_mongo_graphql.social.model;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

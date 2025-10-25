@@ -7,10 +7,14 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
+import com.social_mongo_graphql.social.DTO.PostDTOInput;
 import com.social_mongo_graphql.social.DTO.PostDTOOutput;
 import com.social_mongo_graphql.social.service.PostService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 @Controller
+@CrossOrigin(origins = "*")
 public class PostResolver {
 
     private final PostService ps;
@@ -34,7 +38,7 @@ public class PostResolver {
     }
 
     @MutationMapping
-    public PostDTOOutput createPost(@Argument PostDTOOutput post) {
+    public PostDTOOutput createPost(@Argument("input") PostDTOInput post) {
         PostDTOOutput createdPost = ps.createPost(post);
 
         return createdPost;

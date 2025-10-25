@@ -1,7 +1,27 @@
+"use client";
+
+import { Post } from "@/core/constants";
+import useUsuario from "@/data/hooks/useUsuario";
+import { buscarPostService } from "@/service/post";
 import { CircleUserRound, Clock, User } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+
+  const { usuario } = useUsuario();
+
+  const [postTeste, setPostTeste] = useState<Post | undefined>();
+  
+  const buscarPost = async () => {
+    const p = await buscarPostService();
+    console.log("post: ", p);
+    setPostTeste(p);
+  }
+
+  useEffect(() => {
+    buscarPost();
+  }, [])
 
   const Comentarios = [
     {
@@ -24,7 +44,7 @@ export default function Home() {
       <div className="flex flex-col">
         {/* Informações do usuario */}
         <div className="bg-violet-500 h-16 mt-8 flex w-2xs p-4 text-white [clip-path:polygon(0_0,100%_0,90%_100%,0_100%)]">
-          Informações do usuario
+          {usuario?.displayName}
         </div>
         {/* Publicação do usuario */}
         <div className="bg-gray-300 ml-6 my-6 p-4 w-lg rounded-sm ">

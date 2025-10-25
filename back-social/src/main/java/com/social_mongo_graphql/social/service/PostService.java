@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.social_mongo_graphql.social.DTO.PostDTOOutput;
+import com.social_mongo_graphql.social.DTO.PostDTOInput;
 import com.social_mongo_graphql.social.model.Post;
 import com.social_mongo_graphql.social.repository.PostRepository;
 
@@ -38,7 +39,7 @@ public class PostService {
         return postsToReturn;
     }
 
-    public PostDTOOutput createPost(PostDTOOutput post) {
+    public PostDTOOutput createPost(PostDTOInput post) {
         Post postToSave = new Post();
         postToSave.setAuthorId(post.getAuthorId());
         postToSave.setContent(post.getContent());
