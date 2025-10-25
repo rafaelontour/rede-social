@@ -5,7 +5,7 @@ import { Home, Newspaper, Users } from "lucide-react";
 
 const Logo = () => {
   return (
-    <span className="px-2 ">MCN</span>
+    <span className="px-2 font-bold text-violet-500">MCN</span>
   );
 };
 
